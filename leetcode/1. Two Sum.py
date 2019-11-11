@@ -1,55 +1,34 @@
+'''
+Given an array of integers, return indices of the two numbers such that they add up to a specific target.
 
-class Solution:
-    def romanToInt(self, s: str) -> int:
-        sums = 0
-        i=0
-        
-        while(i<(len(s)-1)):
-            # 是否为特殊字符I X C    L40 C90 D400 M900 
-            if(s[i]=='I'):
-                if (s[i+1]=='V'):
-                    sums+=4
-                    i+=2
-                elif(s[i+1]=='X'):
-                    sums+=9
-                    i+=2
-                else:
-                    sums+=1
-                    i+=1
-            elif(s[i]=='X'):
-                if(s[i+1]=='L'):
-                    sums+=40
-                    i+=2
-                elif(s[i+1]=='C'):
-                    sums+=90
-                    i+=2
-                else:
-                    sums+=10
-                    i+=1
-            elif(s[i]=='C'):
-                if(s[i+1]=='D'):
-                    sums+=400
-                    i+=2
-                elif(s[i+1]=='M'):
-                    sums+=900
-                    i+=2
-                else:
-                    sums+=100
-                    i+=1
-            # 特殊字符处理完毕，V L D M
-            else:
-                if(s[i]=='V'):
-                    sums+=5
-                    i+=1
-                elif(s[i]=='L'):
-                    sums+=50
-                    i+=1
-                elif(s[i]=='D'):
-                    sums+=500
-                    i+=1
-                elif(s[i]=='M'):
-                    sums+=1000
-                    i+=1
-            
-        print(s[i+1])
-        return sums
+You may assume that each input would have exactly one solution, and you may not use the same element twice.
+
+Example:
+
+Given nums = [2, 7, 11, 15], target = 9,
+
+Because nums[0] + nums[1] = 2 + 7 = 9,
+return [0, 1].
+
+来源：力扣（LeetCode）
+链接：https://leetcode-cn.com/problems/two-sum
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+'''
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        /*********************************/
+        // 暴力算解
+        int[] index={0, 0};
+        boolean sign = false;
+        for(int i = 0; i<nums.length&& (!sign); i++){
+            for(int j=i+1; j<nums.length&&(!sign); j++){
+                if(target == (nums[i]+nums[j])){
+                    index[0]=i;
+                    index[1]=j;
+                    sign = true;
+                }
+            }
+        }
+        return index;
+    }
+}
